@@ -1,10 +1,16 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import BooksPage from "./pages/BooksPage";
 import UsersPage from "./pages/UsersPage";
+import axiosClient from "./api/axiosClient";
 
 function App() {
+  useEffect(() => {
+    axiosClient.get("/").catch(() => {}); // Silent wake-up ping
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-[#0F172A]">

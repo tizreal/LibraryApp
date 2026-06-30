@@ -9,30 +9,23 @@ const axiosClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL, // Your Express server URL
   headers: { "Content-Type": "application/json" }, // All requests send JSON
 
-  timeout: 10000, // 10 second timeout — fail fast, don't hang forever
+  timeout: 60000, // 60 second timeout — free tier render, takes while to load
 });
 
-// ── Request Interceptor ─────────────────────────────────────────────────────
-// Runs before every request is sent. Used to attach auth tokens.
-axiosClient.interceptors.request.use(
-  (config) => {
-    // When you add JWT authentication later:
-    // const token = localStorage.getItem('token');
-    // if (token) config.headers.Authorization = `Bearer ${token}`;
-    return config;
-  },
-  (error) => Promise.reject(error),
-);
-
-// ── Response Interceptor ────────────────────────────────────────────────────
-// Runs after every response. Used for centralised error handling.
+// ── Response Interceptor ─────────────────────────────────────────────────────
 axiosClient.interceptors.response.use(
-  (response) => response, // Pass successful responses through
+  (response) => response,
   (error) => {
-    // Axios throws on any 4xx or 5xx response
-    const message = error.response?.data?.error || error.message;
-    console.error("API Error:", message);
-    return Promise.reject(error); // Re-throw so callers can handle it
+    if (error.code === "ECONNABORTED") {
+      error.isColdStart = true;
+      error.friendlyMessage =
+        "The server is waking up — this can take up to a minute on first load. Please try again shortly.";
+    } else {
+      error.friendlyMessage = error.response?.data?.error || error.message;
+    }
+
+    console.error("API Error:", error.friendlyMessage);
+    return Promise.reject(error);
   },
 );
 
