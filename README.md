@@ -1,8 +1,8 @@
 # Library Management System — Frontend
 
 React frontend for a small library management system: browse, add, edit and delete books
-and library members. It works with either of two backends that implement the same REST API,
-one in Spring Boot and one in Express.
+and library members. It is built against the Spring Boot API; an Express backend exposes
+the same endpoints.
 
 **Live demo:** [library-app-hazel-psi.vercel.app](https://library-app-hazel-psi.vercel.app)
 (a shared public sandbox running on the Spring Boot API) · **Backends:**
@@ -18,8 +18,7 @@ React 19 · Vite · React Router 7 · Axios · Tailwind CSS · ESLint · Vercel
 - Books and members pages with create, edit and delete forms.
 - Shared state in a React context (`LibraryContext`), with loading and error states for
   each collection.
-- A single Axios client configured from `VITE_API_URL`, so switching between the Spring Boot
-  and Express backends needs no code change.
+- A single Axios client configured from `VITE_API_URL`.
 - A status banner while the free-tier backend wakes up, which clears once the API responds.
 
 ## Running locally
@@ -28,7 +27,7 @@ Requirements: Node.js and one of the backends running locally.
 
 ```bash
 npm install
-echo "VITE_API_URL=http://localhost:8080" > .env.local   # Spring Boot; use :3000 for Express
+echo "VITE_API_URL=http://localhost:8080" > .env.local   # Spring Boot API
 npm run dev                                             # http://localhost:5173
 ```
 
