@@ -12,6 +12,8 @@ the same endpoints.
 The demo has fictional sample data and is a shared sandbox: changes are temporary and it
 resets automatically on startup and every 6 hours.
 
+![Books page with the sample catalog](docs/screenshot.png)
+
 ## Tech stack
 
 React 19 · Vite · React Router 7 · Axios · Tailwind CSS · ESLint · Vercel
