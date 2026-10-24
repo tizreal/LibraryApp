@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { LibraryProvider } from "./context/LibraryContext";
 import App from "./App";
+import { Analytics } from "@vercel/analytics/react";
 import "./index.css"; // Tailwind styles
 
 // ReactDOM.createRoot finds the <div id='root'> in index.html
@@ -17,5 +18,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <LibraryProvider>
       <App />
     </LibraryProvider>
+    <Analytics />
   </React.StrictMode>,
 );
