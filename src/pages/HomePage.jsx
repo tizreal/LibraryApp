@@ -21,6 +21,10 @@ export default function HomePage() {
         <p className="text-slate-400 text-lg max-w-xl mx-auto">
           Manage your collection of books and library members from one place.
         </p>
+        <p className="text-slate-300 text-sm max-w-xl mx-auto rounded-xl border border-[#334155] bg-[#1E293B]/60 px-4 py-3">
+          Demo environment with fictional sample data. Changes are temporary and reset
+          automatically: this is a shared sandbox that resets on startup and every 6 hours.
+        </p>
         <div className="flex gap-4 justify-center">
           <Link
             to="/books"

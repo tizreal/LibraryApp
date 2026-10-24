@@ -60,7 +60,7 @@ function BooksPage() {
         <div>
           <h1 className="text-2xl font-bold text-white">Books</h1>
           <p className="text-slate-400 text-sm">
-            {books.length} book{books.length !== 1 ? "s" : ""} in library
+            {books.length} book{books.length !== 1 ? "s" : ""} in library · shared demo sandbox, resets automatically
           </p>
         </div>
         <button
