@@ -1,18 +1,46 @@
-# React + Vite
+# Library Management System — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for a small library management system: browse, add, edit and delete books
+and library members. It works with either of two backends that implement the same REST API,
+one in Spring Boot and one in Express.
 
-Currently, two official plugins are available:
+**Live demo:** [library-app-hazel-psi.vercel.app](https://library-app-hazel-psi.vercel.app)
+(a shared public sandbox running on the Spring Boot API) · **Backends:**
+[Spring Boot](https://github.com/tizreal/LibraryAppBackend) ·
+[Express](https://github.com/tizreal/LibraryAppExpressBackend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+React 19 · Vite · React Router 7 · Axios · Tailwind CSS · ESLint · Vercel
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Features
 
-Note: This will impact Vite dev & build performances.
+- Books and members pages with create, edit and delete forms.
+- Shared state in a React context (`LibraryContext`), with loading and error states for
+  each collection.
+- A single Axios client configured from `VITE_API_URL`, so switching between the Spring Boot
+  and Express backends needs no code change.
+- A status banner while the free-tier backend wakes up, which clears once the API responds.
 
-## Expanding the ESLint configuration
+## Running locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Requirements: Node.js and one of the backends running locally.
+
+```bash
+npm install
+echo "VITE_API_URL=http://localhost:8080" > .env.local   # Spring Boot; use :3000 for Express
+npm run dev                                             # http://localhost:5173
+```
+
+Other scripts: `npm run lint`, `npm run build`, `npm run preview`.
+
+## Project structure
+
+```
+src/
+├── api/          Axios client, book and member API calls
+├── components/   cards, forms, navbar, server status banner
+├── context/      shared library state
+├── hooks/        backend warm-up check
+└── pages/        home, books, members
+```
