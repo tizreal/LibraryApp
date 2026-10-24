@@ -25,9 +25,9 @@ export const createUser = async (userData) => {
 
 export const updateUser = async (id, userData) => {
   const payload = {
-    firstName: userData.firstName,
-    lastName: userData.lastName,
-    userNameString: userData.userNameString,
+    first_name: userData.firstName,
+    last_name: userData.lastName,
+    user_name_string: userData.userNameString,
   };
   const response = await axiosClient.put(
     `/api/users/${parseInt(id, 10)}`,
