@@ -60,7 +60,7 @@ function UsersPage() {
         <div>
           <h1 className="text-2xl font-bold text-white">Users</h1>
           <p className="text-slate-400 text-sm">
-            {users.length} user{users.length !== 1 ? "s" : ""} registered
+            {users.length} user{users.length !== 1 ? "s" : ""} registered · fictional sample members, resets automatically
           </p>
         </div>
         <button
